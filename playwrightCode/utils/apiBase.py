@@ -1,5 +1,6 @@
 from playwright.sync_api import Playwright
 
+
 class ApiUtils:
 
     #login Api to gen Token
