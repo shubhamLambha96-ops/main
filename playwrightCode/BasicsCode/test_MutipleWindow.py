@@ -1,8 +1,10 @@
 import time
 
+import pytest
 from playwright.sync_api import Playwright, Page, expect
 
-
+@pytest.mark.smoke
+@pytest.mark.sanity
 def test_MultipleWindow(playwright : Playwright):
     firefoxBrowser = playwright.firefox.launch(headless=False)
     page = firefoxBrowser.new_page()

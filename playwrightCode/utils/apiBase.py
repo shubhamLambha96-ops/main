@@ -27,7 +27,7 @@ class ApiUtils:
 
         token = self.getToken(playwright, userName, password)
         print(token)
-        orderPayload = {"orders": [{"country": "India", "productOrderedId": "68a961459320a140fe1ca57a"}]}
+        orderPayload = {"orders": [{"country": "India", "productOrderedId": "6960eac0c941646b7a8b3e68"}]}
 
         apiRequestContext = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response =  apiRequestContext.post("/api/ecom/order/create-order",

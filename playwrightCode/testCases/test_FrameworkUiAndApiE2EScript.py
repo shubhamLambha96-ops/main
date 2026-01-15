@@ -9,14 +9,19 @@ from playwrightCode.pageObject.login import LoginPage
 from playwrightCode.pageObject.orders import Orders
 
 from playwrightCode.utils.apiBase import ApiUtils
+from pathlib import Path
 
-with open('playwrightCode/data/userCredentials.json') as f:
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_FILE = BASE_DIR / "data" / "userCredentials.json"
+
+with open(DATA_FILE) as f:
     test_data = json.load(f)
     print(test_data)
     user_credentials_list = test_data['user_credentials']
 
+@pytest.mark.smoke
 @pytest.mark.parametrize('user_credentials' , user_credentials_list)
-def test_FrameworkPlaywrightBasics(playwright : Playwright, user_credentials):
+def test_FrameworkPlaywrightBasics(playwright : Playwright, browserInstance, user_credentials):
 
     userName = user_credentials['userName']
     password = user_credentials['password']
@@ -27,9 +32,7 @@ def test_FrameworkPlaywrightBasics(playwright : Playwright, user_credentials):
     print(orderId)
 
     #Ui
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
+    page = browserInstance
     page.goto("https://rahulshettyacademy.com/client")
 
     #Login page
