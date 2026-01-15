@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from playwright.sync_api import Playwright
 
 
@@ -27,7 +30,12 @@ class ApiUtils:
 
         token = self.getToken(playwright, userName, password)
         print(token)
-        orderPayload = {"orders": [{"country": "India", "productOrderedId": "6960eac0c941646b7a8b3e68"}]}
+
+        BASE_DIR = Path(__file__).resolve().parents[1]
+        DATA_FILE = BASE_DIR / "payloads" / "orderApiPayload.json"
+
+        with open(DATA_FILE) as f:
+            orderPayload = json.load(f)
 
         apiRequestContext = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response =  apiRequestContext.post("/api/ecom/order/create-order",
