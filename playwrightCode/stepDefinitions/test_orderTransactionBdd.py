@@ -7,7 +7,7 @@ from playwrightCode.pageObject.login import LoginPage
 from playwrightCode.pageObject.orders import Orders
 from playwrightCode.utils.apiBase import ApiUtils
 
-scenarios('../features/orderTransaction.feature')
+scenarios("orderTransaction.feature")
 
 @pytest.fixture
 def shared_data():
