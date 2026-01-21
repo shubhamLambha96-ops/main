@@ -48,5 +48,4 @@ def test_FrameworkPlaywrightBasics(playwright : Playwright, browserInstance, use
     row = Order.getOrderRow(orderId)
 
     expect(row).to_be_visible()
-    page.close()
 
